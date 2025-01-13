@@ -162,6 +162,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: relative;
+        margin: 0;
       }
       .icons {
         display: flex;
@@ -177,12 +179,33 @@
       }
       .header_btn {
         font-size: 18px;
+        cursor: pointer;
+        height: 62px;
+        text-align: center;
+        line-height: 62px;
+        box-sizing: border-box;
+        /*position: relative;*/
       }
+      .header_btn:hover {
+        border-bottom: 3px solid #2e9ec8;
+      }
+
       .page_util {
         margin: 0;
         background-color: #f8f8fa;
         height: 42px;
         width: 100%;
+      }
+      .home_route {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        margin-left: 10%;
+        height: 42px;
+      }
+      .home_route p {
+        margin: 0 2px 0 8px;
+        color: #666;
       }
       hr {
         margin: 0;
@@ -345,6 +368,33 @@
       span {
         font-weight: bold;
       }
+      .menulist {
+        list-style: none;
+        display: inline-block;
+        text-align: center;
+        line-height: 42px;
+        font-size: 15px;
+        margin-right: 50%;
+      }
+      .menu_li {
+        float: left;
+        margin-right: 20px;
+        color: white;
+      }
+      .hidden_menu {
+        margin: 0;
+        display: none;
+        background-color: #2e9ec8;
+        position: absolute;
+        z-index: 100;
+        width: 100vw;
+        height: 42px;
+        top: 100%;
+        left: -144px;
+      }
+      .header_btn:hover .hidden_menu {
+        display: block;
+      }
     </style>
   </head>
   <body>
@@ -367,9 +417,34 @@
             <img src="https://img.megabox.co.kr/static/pc/images/common/ico/ico-sitemap.png" alt="" />
             <img src="https://img.megabox.co.kr/static/pc/images/common/ico/ico-search.png" alt="" />
           </div>
-          <div class="header_btn">영화</div>
-          <div class="header_btn">예매</div>
-          <div class="header_btn">극장</div>
+          <div class="header_btn">
+            영화
+            <div class="hidden_menu">
+              <ul class="menulist">
+                <li class="menu_li">전체영화</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="header_btn">
+            예매
+            <div class="hidden_menu">
+              <ul class="menulist">
+                <li class="menu_li">빠른예매</li>
+                <li class="menu_li">상영시간표</li>
+                <li class="menu_li">더 부티크 프라이빗 예매</li>
+              </ul>
+            </div>
+          </div>
+          <div class="header_btn">
+            극장
+            <div class="hidden_menu">
+              <ul class="menulist">
+                <li class="menu_li">전체극장</li>
+                <li class="menu_li">특별관</li>
+              </ul>
+            </div>
+          </div>
           <div class="logo"></div>
           <div class="header_btn">이벤트</div>
           <div class="header_btn">스토어</div>
@@ -382,7 +457,16 @@
       </header>
     </div>
     <hr />
-    <div class="page_util"></div>
+    <div class="page_util">
+      <div class="home_route">
+        <img src="https://img.megabox.co.kr/static/pc/images/common/bg/bg-location-home.png" alt="" />
+        <p>></p>
+        <p>영화</p>
+        <p>></p>
+        <p>전체 영화</p>
+      </div>
+    </div>
+
     <div class="max_width">
       <main>
         <div class="main_title">전체영화</div>
