@@ -1,0 +1,670 @@
+<!-- 메가박스 영화 페이지 클론코딩 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>영화 페이지</title>
+    <style>
+      /* http://meyerweb.com/eric/tools/css/reset/ */
+      html,
+      body,
+      div,
+      span,
+      applet,
+      object,
+      iframe,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      blockquote,
+      pre,
+      a,
+      abbr,
+      acronym,
+      address,
+      big,
+      cite,
+      code,
+      del,
+      dfn,
+      em,
+      img,
+      ins,
+      kbd,
+      q,
+      s,
+      samp,
+      small,
+      strike,
+      strong,
+      sub,
+      sup,
+      tt,
+      var,
+      b,
+      u,
+      i,
+      center,
+      dl,
+      dt,
+      dd,
+      ol,
+      ul,
+      li,
+      fieldset,
+      form,
+      label,
+      legend,
+      table,
+      caption,
+      tbody,
+      tfoot,
+      thead,
+      tr,
+      th,
+      td,
+      article,
+      aside,
+      canvas,
+      details,
+      embed,
+      figure,
+      figcaption,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      output,
+      ruby,
+      section,
+      summary,
+      time,
+      mark,
+      audio,
+      video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+      /* HTML5 display-role reset for older browsers */
+      article,
+      aside,
+      details,
+      figcaption,
+      figure,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      section {
+        display: block;
+      }
+      body {
+        line-height: 1;
+      }
+      ol,
+      ul {
+        list-style: none;
+      }
+      blockquote,
+      q {
+        quotes: none;
+      }
+      blockquote:before,
+      blockquote:after,
+      q:before,
+      q:after {
+        content: "";
+        content: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+      body {
+        margin: 0;
+      }
+      .max_width {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      header {
+        width: 80%;
+        justify-content: center;
+      }
+      .util_header {
+        padding: 15px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .util_div1,
+      .util_div2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 180px;
+        font-size: 13px;
+        color: #666;
+      }
+      .main_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .icons {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 80px;
+      }
+      .logo {
+        padding-bottom: 15px;
+        height: 47px;
+        width: 140px;
+        background: url(https://img.megabox.co.kr/static/pc/images/common/ci/logo_new2.png) no-repeat;
+      }
+      .header_btn {
+        font-size: 18px;
+      }
+      .page_util {
+        margin: 0;
+        background-color: #f8f8fa;
+        height: 42px;
+        width: 100%;
+      }
+      hr {
+        margin: 0;
+        border: 0.8px solid #351f67;
+      }
+      .main_title {
+        font-weight: 400px;
+        font-size: 28px;
+        padding-bottom: 25px;
+      }
+      main {
+        width: 80%;
+        justify-content: left;
+        padding-top: 40px;
+      }
+      #movie_menu {
+        display: flex;
+        flex-wrap: wrap;
+        height: 40px;
+        list-style: none;
+        margin: 0;
+      }
+      .menu_selected {
+        color: #351f67;
+        text-align: center;
+        line-height: 40px;
+        border-top: 1px solid #351f67;
+        border-left: 1px solid #351f67;
+        border-right: 1px solid #351f67;
+        width: 20%;
+        margin: 0;
+      }
+      .menu_select {
+        text-align: center;
+        line-height: 40px;
+        border-right: 1px solid #ebebeb;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #351f67;
+        width: 19.85%;
+        margin: 0;
+      }
+      .onair {
+        width: 24px;
+        height: 17px;
+        background: url(https://img.megabox.co.kr/static/pc/images/common/btn/btn-on-air.png) no-repeat;
+        background-position: 0 0;
+        background-size: 24 auto;
+        float: left;
+        margin-right: 4px;
+      }
+      .left_zone {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 310px;
+      }
+      .right_zone {
+        width: 230px;
+      }
+      .headline {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 35px 0 20px;
+      }
+      .search {
+        width: 200px;
+        height: 34px;
+        color: #444;
+        border: 1px solid #d8d9db;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1px 10px;
+        border-radius: 4px;
+      }
+      input[type="text"] {
+        width: 170px;
+        height: 34px;
+        color: #444;
+        border: none;
+        font-size: 15px;
+        outline: none;
+      }
+      .poster {
+        width: 230px;
+        height: 331px;
+      }
+      .movie_list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .movie_info {
+        width: 230px;
+        margin-right: 50px;
+        margin-bottom: 50px;
+      }
+      .movie_info:nth-child(4n) {
+        margin-right: 0;
+      }
+      .img_area {
+        position: relative;
+      }
+      .rank {
+        position: absolute;
+        padding: 10px 0 0 8px;
+        font-size: 2em;
+        font-style: italic;
+        color: white;
+        text-shadow: 2px 2px 4px black;
+      }
+      .info_area {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+      }
+      .grade {
+        width: 23px;
+        height: 23px;
+        background-image: url(https://img.megabox.co.kr/static/pc/images/common/txt/ALL_46x46.png);
+        background-size: 23px 23px;
+        margin-right: 8px;
+      }
+      .open_date::before {
+        content: "";
+        width: 1px;
+        height: 14px;
+        background-color: rgba(0, 0, 0, 0.08);
+        float: left;
+        margin: 0 10px 0 10px;
+      }
+      .info_area button {
+        width: 74px;
+        height: 36px;
+        border: 1px solid #ebebeb;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .white_btn {
+        background-color: white;
+        font-size: 13px;
+      }
+      .heart {
+        height: 15px;
+        width: 17px;
+        background-image: url(https://img.megabox.co.kr/static/pc/images/common/ico/ico-heart-toggle-gray.png);
+        background-position: 0 0;
+        background-size: 34px auto;
+        display: inline-block;
+        margin-right: 4px;
+      }
+      .purple_btn {
+        background-color: #503396;
+        font-size: 15px;
+        color: white;
+      }
+      span {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="max_width">
+      <header>
+        <div class="util_header">
+          <div class="util_div1">
+            <div class="util_btn">VIP LOUNGE</div>
+            <div class="util_btn">멤버십</div>
+            <div class="util_btn">고객센터</div>
+          </div>
+          <div class="util_div2">
+            <div class="util_btn">로그인</div>
+            <div class="util_btn">회원가입</div>
+            <div class="util_btn">빠른예매</div>
+          </div>
+        </div>
+        <div class="main_header">
+          <div class="icons">
+            <img src="https://img.megabox.co.kr/static/pc/images/common/ico/ico-sitemap.png" alt="" />
+            <img src="https://img.megabox.co.kr/static/pc/images/common/ico/ico-search.png" alt="" />
+          </div>
+          <div class="header_btn">영화</div>
+          <div class="header_btn">예매</div>
+          <div class="header_btn">극장</div>
+          <div class="logo"></div>
+          <div class="header_btn">이벤트</div>
+          <div class="header_btn">스토어</div>
+          <div class="header_btn">혜택</div>
+          <div class="icons">
+            <img src="https://img.megabox.co.kr/static/pc/images/common/ico/ico-schedule.png" alt="" />
+            <img src="https://img.megabox.co.kr/static/pc/images/common/ico/ico-mymega.png" alt="" />
+          </div>
+        </div>
+      </header>
+    </div>
+    <hr />
+    <div class="page_util"></div>
+    <div class="max_width">
+      <main>
+        <div class="main_title">전체영화</div>
+        <ul id="movie_menu">
+          <li class="menu_selected">박스오피스</li>
+          <li class="menu_select">상영예정작</li>
+          <li class="menu_select">단독</li>
+          <li class="menu_select">필름소사이어티</li>
+          <li class="menu_select">클래식소사이어티</li>
+        </ul>
+        <div class="headline">
+          <div class="left_zone">
+            <div style="width: 100px">
+              <div class="onair"></div>
+              <div>개봉작만</div>
+            </div>
+            <p><span>88</span>개의 영화가 검색되었습니다.</p>
+          </div>
+          <div class="search">
+            <input type="text" placeholder="영화명 검색" />
+            <img src="https://img.megabox.co.kr/static/pc/images/common/btn/btn-search-input.png" alt="" />
+          </div>
+        </div>
+        <div class="movie_list">
+          <div class="movie_info">
+            <div class="img_area">
+              <p class="rank">1</p>
+              <img
+                class="poster"
+                src="https://img.megabox.co.kr/SharedImg/2025/01/06/veoYkRw8THPbrE9FobWUP1BVmEbMOXnp_420.jpg"
+                alt="말할 수 없는 비밀"
+              />
+            </div>
+            <div class="info_area" style="margin: 15px 0">
+              <div class="grade"></div>
+              <div style="font-size: 20px">말할 수 없는 비밀</div>
+            </div>
+            <div class="info_area" style="font-size: 15px; margin: 10px 0">
+              <div>예매율 34.8%</div>
+              <div class="open_date">개봉일 2025.01.28</div>
+            </div>
+            <div class="info_area" style="justify-content: space-between">
+              <button class="white_btn">
+                <div class="heart"></div>
+                654
+              </button>
+              <button class="purple_btn">예매</button>
+              <button class="purple_btn">
+                <img
+                  style="margin-top: 2px"
+                  src="https://www.megabox.co.kr/static/pc/images/common/btn/mov_list_db_btn.png"
+                  alt="dolby 버튼"
+                />
+              </button>
+            </div>
+          </div>
+          <div class="movie_info">
+            <div class="img_area">
+              <p class="rank">2</p>
+              <img
+                class="poster"
+                src="https://img.megabox.co.kr/SharedImg/2025/01/06/veoYkRw8THPbrE9FobWUP1BVmEbMOXnp_420.jpg"
+                alt="말할 수 없는 비밀"
+              />
+            </div>
+            <div class="info_area" style="margin: 15px 0">
+              <div class="grade"></div>
+              <div style="font-size: 20px">말할 수 없는 비밀</div>
+            </div>
+            <div class="info_area" style="font-size: 15px; margin: 10px 0">
+              <div>예매율 34.8%</div>
+              <div class="open_date">개봉일 2025.01.28</div>
+            </div>
+            <div class="info_area" style="justify-content: space-between">
+              <button class="white_btn">
+                <div class="heart"></div>
+                654
+              </button>
+              <button class="purple_btn">예매</button>
+              <button class="purple_btn">
+                <img
+                  style="margin-top: 2px"
+                  src="https://www.megabox.co.kr/static/pc/images/common/btn/mov_list_db_btn.png"
+                  alt="dolby 버튼"
+                />
+              </button>
+            </div>
+          </div>
+          <div class="movie_info">
+            <div class="img_area">
+              <p class="rank">3</p>
+              <img
+                class="poster"
+                src="https://img.megabox.co.kr/SharedImg/2025/01/06/veoYkRw8THPbrE9FobWUP1BVmEbMOXnp_420.jpg"
+                alt="말할 수 없는 비밀"
+              />
+            </div>
+            <div class="info_area" style="margin: 15px 0">
+              <div class="grade"></div>
+              <div style="font-size: 20px">말할 수 없는 비밀</div>
+            </div>
+            <div class="info_area" style="font-size: 15px; margin: 10px 0">
+              <div>예매율 34.8%</div>
+              <div class="open_date">개봉일 2025.01.28</div>
+            </div>
+            <div class="info_area" style="justify-content: space-between">
+              <button class="white_btn">
+                <div class="heart"></div>
+                654
+              </button>
+              <button class="purple_btn">예매</button>
+              <button class="purple_btn">
+                <img
+                  style="margin-top: 2px"
+                  src="https://www.megabox.co.kr/static/pc/images/common/btn/mov_list_db_btn.png"
+                  alt="dolby 버튼"
+                />
+              </button>
+            </div>
+          </div>
+          <div class="movie_info">
+            <div class="img_area">
+              <p class="rank">4</p>
+              <img
+                class="poster"
+                src="https://img.megabox.co.kr/SharedImg/2025/01/06/veoYkRw8THPbrE9FobWUP1BVmEbMOXnp_420.jpg"
+                alt="말할 수 없는 비밀"
+              />
+            </div>
+            <div class="info_area" style="margin: 15px 0">
+              <div class="grade"></div>
+              <div style="font-size: 20px">말할 수 없는 비밀</div>
+            </div>
+            <div class="info_area" style="font-size: 15px; margin: 10px 0">
+              <div>예매율 34.8%</div>
+              <div class="open_date">개봉일 2025.01.28</div>
+            </div>
+            <div class="info_area" style="justify-content: space-between">
+              <button class="white_btn">
+                <div class="heart"></div>
+                654
+              </button>
+              <button class="purple_btn">예매</button>
+              <button class="purple_btn">
+                <img
+                  style="margin-top: 2px"
+                  src="https://www.megabox.co.kr/static/pc/images/common/btn/mov_list_db_btn.png"
+                  alt="dolby 버튼"
+                />
+              </button>
+            </div>
+          </div>
+          <div class="movie_info">
+            <div class="img_area">
+              <p class="rank">5</p>
+              <img
+                class="poster"
+                src="https://img.megabox.co.kr/SharedImg/2025/01/06/veoYkRw8THPbrE9FobWUP1BVmEbMOXnp_420.jpg"
+                alt="말할 수 없는 비밀"
+              />
+            </div>
+            <div class="info_area" style="margin: 15px 0">
+              <div class="grade"></div>
+              <div style="font-size: 20px">말할 수 없는 비밀</div>
+            </div>
+            <div class="info_area" style="font-size: 15px; margin: 10px 0">
+              <div>예매율 34.8%</div>
+              <div class="open_date">개봉일 2025.01.28</div>
+            </div>
+            <div class="info_area" style="justify-content: space-between">
+              <button class="white_btn">
+                <div class="heart"></div>
+                654
+              </button>
+              <button class="purple_btn">예매</button>
+              <button class="purple_btn">
+                <img
+                  style="margin-top: 2px"
+                  src="https://www.megabox.co.kr/static/pc/images/common/btn/mov_list_db_btn.png"
+                  alt="dolby 버튼"
+                />
+              </button>
+            </div>
+          </div>
+          <div class="movie_info">
+            <div class="img_area">
+              <p class="rank">6</p>
+              <img
+                class="poster"
+                src="https://img.megabox.co.kr/SharedImg/2025/01/06/veoYkRw8THPbrE9FobWUP1BVmEbMOXnp_420.jpg"
+                alt="말할 수 없는 비밀"
+              />
+            </div>
+            <div class="info_area" style="margin: 15px 0">
+              <div class="grade"></div>
+              <div style="font-size: 20px">말할 수 없는 비밀</div>
+            </div>
+            <div class="info_area" style="font-size: 15px; margin: 10px 0">
+              <div>예매율 34.8%</div>
+              <div class="open_date">개봉일 2025.01.28</div>
+            </div>
+            <div class="info_area" style="justify-content: space-between">
+              <button class="white_btn">
+                <div class="heart"></div>
+                654
+              </button>
+              <button class="purple_btn">예매</button>
+              <button class="purple_btn">
+                <img
+                  style="margin-top: 2px"
+                  src="https://www.megabox.co.kr/static/pc/images/common/btn/mov_list_db_btn.png"
+                  alt="dolby 버튼"
+                />
+              </button>
+            </div>
+          </div>
+          <div class="movie_info">
+            <div class="img_area">
+              <p class="rank">7</p>
+              <img
+                class="poster"
+                src="https://img.megabox.co.kr/SharedImg/2025/01/06/veoYkRw8THPbrE9FobWUP1BVmEbMOXnp_420.jpg"
+                alt="말할 수 없는 비밀"
+              />
+            </div>
+            <div class="info_area" style="margin: 15px 0">
+              <div class="grade"></div>
+              <div style="font-size: 20px">말할 수 없는 비밀</div>
+            </div>
+            <div class="info_area" style="font-size: 15px; margin: 10px 0">
+              <div>예매율 34.8%</div>
+              <div class="open_date">개봉일 2025.01.28</div>
+            </div>
+            <div class="info_area" style="justify-content: space-between">
+              <button class="white_btn">
+                <div class="heart"></div>
+                654
+              </button>
+              <button class="purple_btn">예매</button>
+              <button class="purple_btn">
+                <img
+                  style="margin-top: 2px"
+                  src="https://www.megabox.co.kr/static/pc/images/common/btn/mov_list_db_btn.png"
+                  alt="dolby 버튼"
+                />
+              </button>
+            </div>
+          </div>
+          <div class="movie_info">
+            <div class="img_area">
+              <p class="rank">8</p>
+              <img
+                class="poster"
+                src="https://img.megabox.co.kr/SharedImg/2025/01/06/veoYkRw8THPbrE9FobWUP1BVmEbMOXnp_420.jpg"
+                alt="말할 수 없는 비밀"
+              />
+            </div>
+            <div class="info_area" style="margin: 15px 0">
+              <div class="grade"></div>
+              <div style="font-size: 20px">말할 수 없는 비밀</div>
+            </div>
+            <div class="info_area" style="font-size: 15px; margin: 10px 0">
+              <div>예매율 34.8%</div>
+              <div class="open_date">개봉일 2025.01.28</div>
+            </div>
+            <div class="info_area" style="justify-content: space-between">
+              <button class="white_btn">
+                <div class="heart"></div>
+                654
+              </button>
+              <button class="purple_btn">예매</button>
+              <button class="purple_btn">
+                <img
+                  style="margin-top: 2px"
+                  src="https://www.megabox.co.kr/static/pc/images/common/btn/mov_list_db_btn.png"
+                  alt="dolby 버튼"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
