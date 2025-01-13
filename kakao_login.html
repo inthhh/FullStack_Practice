@@ -1,0 +1,238 @@
+<!-- 카카오 로그인 페이지 클론코딩 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>다음 로그인 화면</title>
+    <style>
+      * {
+        margin: 0;
+      }
+      header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 50px 0;
+      }
+      .logo {
+        width: 88px;
+        height: 27px;
+        background: #fff url(https://accounts.kakaocdn.net/images/rebuilding/pc/logo_kakao.png) no-repeat 0 0;
+        background-size: 100px auto;
+        background-position: 0 0;
+      }
+      .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        width: 580px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .loginbox {
+        width: 440px;
+        padding: 50px 0;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        height: 45px;
+        border: none;
+        border-bottom: 2px solid #ccc;
+        font-size: 18px;
+        padding: 10px 0 0 0;
+        line-height: 25px;
+        color: #191919;
+      }
+      .simple {
+        margin: 25px 0 30px;
+        display: flex;
+        align-items: center;
+      }
+      .inputcheck {
+        font-size: 14px;
+        width: 20px;
+        height: 20px;
+        background: url(https://accounts.kakaocdn.net/images/rebuilding/pc/ico_comm.png);
+        background-size: 300px auto;
+        background-position: 0 0;
+      }
+      .inputcheck:active {
+        background: url(https://accounts.kakaocdn.net/images/rebuilding/pc/ico_comm.png);
+        background-size: 300px auto;
+        background-position: -25px 0;
+      }
+      .simple_label {
+        color: #666;
+        font-size: 14px;
+        margin-left: 5px;
+      }
+      .info_icon {
+        margin-left: 5px;
+        background: url(https://accounts.kakaocdn.net/images/rebuilding/pc/ico_comm.png);
+        background-size: 300px auto;
+        background-position: -120px -110px;
+        width: 18px;
+        height: 18px;
+      }
+
+      .login_btn,
+      .qr_btn {
+        border-radius: 4px;
+        width: 100%;
+        height: 50px;
+        border: none;
+        font-size: 16px;
+      }
+      .login_btn {
+        background-color: #fee500;
+      }
+      .qr_btn {
+        background-color: #f0f0f0;
+      }
+
+      .or_zone {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        color: #828282;
+        padding: 15px 0;
+      }
+      .hr_ {
+        height: 1px;
+        background-color: rgba(0, 0, 0, 0.06);
+        width: 43%;
+      }
+
+      button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+      }
+      .login_bottom {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin: 26px 0 50px;
+        font-size: 12px;
+      }
+      .login_bottom2 {
+        font-size: 12px;
+      }
+      .login_bottom2 .bt2::before {
+        content: "";
+        float: left;
+        width: 1px;
+        height: 12px;
+        margin: 2px 15px 0 0;
+        background-color: rgba(0, 0, 0, 0.08);
+      }
+
+      .ad_bottom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 84px;
+        background-color: #f3f3f3;
+        border-radius: 4px;
+      }
+
+      footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 50px 0 40px;
+        border-top: 0;
+        font-size: 0;
+        text-align: center;
+        white-space: nowrap;
+      }
+      .selectbox {
+        border: none;
+        margin-right: 10px;
+        color: #666;
+      }
+      footer button {
+        color: #666;
+      }
+      .b1::before,
+      .b2::before,
+      .b3::before {
+        content: "";
+        float: left;
+        width: 1px;
+        height: 12px;
+        margin: 2px 15px 0 0;
+        background-color: rgba(0, 0, 0, 0.08);
+      }
+      .b4 {
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo"></div>
+    </header>
+    <div class="main">
+      <div class="container">
+        <div class="loginbox">
+          <div class="inputform">
+            <input type="text" placeholder="카카오 다음 로그인 - (정수현)" />
+            <br />
+            <input type="password" placeholder="비밀번호" />
+            <br />
+            <div class="simple">
+              <div class="inputcheck" id="simple_login"></div>
+              <label class="simple_label" for="simple_login">간편로그인 정보 저장</label>
+              <div class="info_icon"></div>
+            </div>
+          </div>
+          <div class="buttons">
+            <button class="login_btn">로그인</button>
+            <div class="or_zone">
+              <div class="hr_"></div>
+              <p>또는</p>
+              <div class="hr_"></div>
+            </div>
+            <button class="qr_btn">QR코드 로그인</button>
+          </div>
+          <div class="login_bottom">
+            <button>회원가입</button>
+            <div class="login_bottom2">
+              <button>계정 찾기</button>
+              <button class="bt2">비밀번호 찾기</button>
+            </div>
+          </div>
+          <div class="ad_bottom">
+            <img
+              src="https://accounts.kakaocdn.net/images/img_bnr_ko.png"
+              class="img_bnr"
+              alt="[광고] 통합하지 않은 Daum ID 안내 카카오계정과 통합 후 이용할 수 있어요"
+              height="100%"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <select class="selectbox" name="" id="">
+        <option value="">한국어</option>
+        <option value="">English</option>
+        <option value="">日本語</option>
+      </select>
+      <button class="b1">이용약관</button>
+      <button class="b2" style="font-weight: bold">개인정보 처리방침</button>
+      <button class="b3">고객센터</button>
+      <button class="b4">@ Kakao Corp.</button>
+    </footer>
+  </body>
+</html>
