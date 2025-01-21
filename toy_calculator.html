@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iOS Style Calculator</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #333;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .calculator {
+        background-color: #444;
+        border-radius: 20px;
+        padding: 20px;
+        width: 320px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      }
+      .display {
+        background-color: black;
+        color: white;
+        font-size: 40px;
+        text-align: right;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+      button {
+        font-size: 26px;
+        width: 70px;
+        height: 70px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        outline: none;
+      }
+      button.operator {
+        background-color: #f7931e;
+        color: white;
+      }
+      button.number {
+        background-color: #555;
+        color: white;
+      }
+      button.clear {
+        background-color: #999;
+        color: black;
+      }
+      button.zero {
+        grid-column: span 2 !important;
+        width: 150px;
+        border-radius: 25px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <!-- Display -->
+      <div class="display" id="display">0</div>
+      <!-- Buttons -->
+      <div class="buttons">
+        <button class="clear" onclick="clearDisplay()">AC</button>
+        <button class="operator" onclick="updown()">+/-</button>
+        <button class="operator">%</button>
+        <button class="operator">÷</button>
+        <button class="number">7</button>
+        <button class="number">8</button>
+        <button class="number">9</button>
+        <button class="operator">×</button>
+        <button class="number">4</button>
+        <button class="number">5</button>
+        <button class="number">6</button>
+        <button class="operator">−</button>
+        <button class="number">1</button>
+        <button class="number">2</button>
+        <button class="number">3</button>
+        <button class="operator">+</button>
+        <button class="number zero">0</button>
+        <button class="number">.</button>
+        <button class="operator">=</button>
+      </div>
+    </div>
+
+    <script>
+      let display = document.getElementById("display");
+      let currentInput = "0";
+
+      const clearDisplay = () => {
+        currentInput = "0";
+        display.textContent = currentInput;
+      };
+
+      const buttons = document.querySelectorAll(".number");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const value = button.textContent;
+          if (currentOperator) {
+            display.textContent = value;
+          } else {
+            if (display.textContent === "0") {
+              display.textContent = value;
+            } else {
+              display.textContent += value;
+            }
+          }
+        });
+      });
+
+      // 연산 버튼 클릭 시, 
+      // 1. 연산버튼 하이라이트 - 미구현, 과거 하이라이트는 삭제 필요
+      // 2. 이전 숫자값 저장 - 일부 구현, '='이후 로직 미구현
+      // 3. currentOperator - 일부 구현, '='이후 로직 미구현
+      const operators = document.querySelectorAll(".operator");
+      let firstNum = 0;
+      let secondNum = 0;
+      let currentOperator = "";
+      operators.forEach((oper) => {
+        oper.addEventListener("click", () => {
+          if (currentOperator) {
+            secondNum = Number(display.textContent);
+            switch (currentOperator) {
+              case "+":
+                firstNum += secondNum;
+                break;
+              case "−":
+                firstNum -= secondNum;
+                break;
+              case "×":
+                firstNum *= secondNum;
+                break;
+              case "÷":
+                firstNum /= secondNum;
+                break;
+              case "%":
+                firstNum %= secondNum;
+                break;
+              default:
+                break;
+            }
+            display.textContent = firstNum;
+            if (oper.textContent === "=") {
+              firstNum = 0;
+              secondNum = 0;
+              currentOperator = "";
+            }
+          } else {
+            firstNum = Number(display.textContent);
+          }
+          currentOperator = oper.textContent;
+        });
+      });
+    </script>
+  </body>
+</html>
