@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>연습문제 - 자판기 프로그램</title>
+    <script>
+      // 오른쪽 그림과 같이 동작하는 자판기를 만드시오.
+    </script>
+    <style>
+      #wrap {
+        border: 1px solid gray;
+        width: 300px;
+        height: 400px;
+        margin: 30px auto;
+        display: flex;
+        flex-flow: wrap column;
+        align-items: center;
+        text-align: center;
+      }
+      .btn {
+        width: 250px;
+        height: 30px;
+        margin-bottom: 10px;
+      }
+      #can {
+        background-color: rgb(35, 119, 35);
+        color: rgb(240, 228, 228);
+      }
+      #water {
+        background-color: rgb(96, 158, 99);
+        color: rgb(240, 228, 228);
+      }
+      #result {
+        background-color: rgb(108, 158, 235);
+        color: rgb(240, 228, 228);
+      }
+      .won {
+        width: 120px;
+        height: 30px;
+        margin-bottom: 10px;
+        background-color: rgb(207, 71, 112);
+        color: rgb(240, 228, 228);
+      }
+      button {
+        border: 1px solid rgba(65, 65, 65, 0.5);
+      }
+      #remain {
+        font-size: 14px;
+      }
+      div span {
+        font-size: 30px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <div>
+        <p style="font-weight: bold">JavaScript</p>
+        <p>자판기 프로그램을 작성해보자</p>
+      </div>
+      <div>
+        <p>1. 동전 투입 시 잔액 추가됨.</p>
+        <p>2. 잔액 부족 시 잔액 부족 팝업</p>
+        <p>3. 뽑기 후에 잔액 차감.</p>
+      </div>
+      <div id="insert">
+        <button class="won" id="coin1000">1000원 투입</button>
+        <button class="won" id="coin500">500원 투입</button>
+      </div>
+      <button class="btn" id="can">캔음료 2000원 뽑기</button>
+      <button class="btn" id="water">생수 700원 뽑기</button>
+      <label id="remain">잔액</label>
+      <button class="btn" id="result">0</button>
+    </div>
+    <div style="text-align: center">
+      <h3>현재 아이템</h3>
+      <div>
+        캔음료 :
+        <span class="can_cnt">0</span>
+        개
+      </div>
+      <div>
+        생수 :
+        <span class="water_cnt">0</span>
+        개
+      </div>
+    </div>
+    <script>
+      window.onload = () => {
+        let coin1000 = document.querySelector("#coin1000");
+        let coin500 = document.querySelector("#coin500");
+        let can = document.querySelector("#can");
+        let water = document.querySelector("#water");
+        let result = document.querySelector("#result");
+        let nowCash = Number(result.textContent);
+
+        coin1000.onclick = () => {
+          let nowCash = Number(result.textContent);
+          result.textContent = nowCash + 1000;
+        };
+        coin500.onclick = () => {
+          let nowCash = Number(result.textContent);
+          result.textContent = nowCash + 500;
+        };
+        can.onclick = () => {
+          let nowCash = Number(result.textContent);
+          if (nowCash >= 2000) {
+            result.textContent = nowCash - 2000;
+            let canCnt = document.querySelector(".can_cnt");
+            canCnt.textContent = Number(canCnt.textContent) + 1;
+          } else alert("잔액이 부족합니다. (잔액: " + nowCash + " 원, 부족 금액: " + (2000 - nowCash) + "원)");
+        };
+        water.onclick = () => {
+          let nowCash = Number(result.textContent);
+          if (nowCash >= 700) {
+            result.textContent = nowCash - 700;
+            let waterCnt = document.querySelector(".water_cnt");
+            waterCnt.textContent = Number(waterCnt.textContent) + 1;
+          } else alert("잔액이 부족합니다. (잔액: " + nowCash + " 원, 부족 금액: " + (700 - nowCash) + "원)");
+        };
+      };
+    </script>
+  </body>
+</html>
