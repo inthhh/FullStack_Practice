@@ -10,5 +10,3 @@
 2. 메가박스 영화 페이지<br>
   <img width="400" alt="image" src="https://github.com/user-attachments/assets/2639e090-e27f-45b0-9f78-9298bf6d35aa" />
 <br>
-3. 토이 계산기 (self project - 진행 중) <br>
-<img width="500" alt="image" src="https://github.com/user-attachments/assets/03e69006-d36a-4e2d-becb-a35123f21288" />
